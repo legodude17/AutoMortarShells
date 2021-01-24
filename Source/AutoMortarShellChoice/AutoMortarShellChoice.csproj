@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -62,6 +65,7 @@
     <Compile Include="Gizmo_LevelReadout.cs" />
     <Compile Include="JobDriver_Rearm_AutoMortar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmartTargeting.cs" />
     <Compile Include="Verb_Auto.cs" />
     <Compile Include="WorkGiver_Rearm_AutoMortar.cs" />
   </ItemGroup>

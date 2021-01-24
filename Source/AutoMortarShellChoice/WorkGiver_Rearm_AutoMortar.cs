@@ -18,7 +18,8 @@ namespace AutoMortarShellChoice
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             return base.HasJobOnThing(pawn, t, forced) && t is ThingWithComps twc &&
-                   twc.TryGetComp<CompAutoChangeProj>() is CompAutoChangeProj cacp && cacp.NeedsReload;
+                   twc.TryGetComp<CompAutoChangeProj>() is CompAutoChangeProj cacp && cacp.NeedsReload &&
+                   pawn.CanReserve(t);
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
@@ -27,7 +28,7 @@ namespace AutoMortarShellChoice
             var comp = t.TryGetComp<CompAutoChangeProj>();
             var shell = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
                 ThingRequest.ForGroup(ThingRequestGroup.HaulableEver), PathEndMode.ClosestTouch,
-                TraverseParms.For(pawn), validator: thing => comp.CanReloadFrom(thing));
+                TraverseParms.For(pawn), validator: thing => comp.CanReloadFrom(thing) && pawn.CanReserve(thing));
             if (shell == null) return null;
             job.targetB = shell;
             job.count = Math.Min(shell.stackCount, comp.Props.MaxShells - comp.LoadedShells);

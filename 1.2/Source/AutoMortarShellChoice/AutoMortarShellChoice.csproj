@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,9 +36,8 @@
       <HintPath>..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Assembly-CSharp_public">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp_public.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,10 +63,14 @@
   <ItemGroup>
     <Compile Include="AutoMortarShellChoiceMod.cs" />
     <Compile Include="CompAutoChangeProj.cs" />
+    <Compile Include="CustomTargetFinders.cs" />
     <Compile Include="Gizmo_LevelReadout.cs" />
     <Compile Include="JobDriver_Rearm_AutoMortar.cs" />
+    <Compile Include="PatchOperationTryAddModExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShieldUtils.cs" />
     <Compile Include="SmartTargeting.cs" />
+    <Compile Include="TargetVerifiers.cs" />
     <Compile Include="Verb_Auto.cs" />
     <Compile Include="WorkGiver_Rearm_AutoMortar.cs" />
   </ItemGroup>

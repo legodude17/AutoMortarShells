@@ -12,20 +12,19 @@ namespace AutoMortarShellChoice
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
             return pawn.Map.listerBuildings.AllBuildingsColonistOfClass<Building_Turret>()
-                .Where(t => t.TryGetComp<CompAutoChangeProj>() != null);
+                .Where(t => t.GetCompAutoChangeProj() != null);
         }
 
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            return base.HasJobOnThing(pawn, t, forced) && t is ThingWithComps twc &&
-                   twc.TryGetComp<CompAutoChangeProj>() is CompAutoChangeProj cacp && cacp.NeedsReload &&
-                   pawn.CanReserve(t);
+            return base.HasJobOnThing(pawn, t, forced) && t.GetCompAutoChangeProj() is CompAutoChangeProj cacp &&
+                   cacp.NeedsReload && pawn.CanReserve(t);
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             var job = new Job(RearmDefOf.SC_RearmAuto, t);
-            var comp = t.TryGetComp<CompAutoChangeProj>();
+            var comp = t.GetCompAutoChangeProj();
             var shell = GenClosest.ClosestThingReachable(pawn.Position, pawn.Map,
                 ThingRequest.ForGroup(ThingRequestGroup.HaulableEver), PathEndMode.ClosestTouch,
                 TraverseParms.For(pawn), validator: thing => comp.CanReloadFrom(thing) && pawn.CanReserve(thing));

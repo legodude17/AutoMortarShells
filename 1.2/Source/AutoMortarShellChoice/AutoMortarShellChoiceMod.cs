@@ -14,12 +14,12 @@ namespace AutoMortarShellChoice
             harm = new Harmony("legodude17.vfemechscp");
             Settings = GetSettings<AMSCSettings>();
             SmartTargeting.Mod = this;
-            SmartTargeting.Patch(harm);
+            ShieldUtils.Patch(harm);
             if (Settings.SmartTargeting) SmartTargeting.PatchTurret(harm);
             Log.Message("Applied patches for " + harm.Id);
         }
 
-        public AMSCSettings Settings { get; }
+        public static AMSCSettings Settings { get; private set; }
 
         public override string SettingsCategory()
         {
@@ -86,6 +86,7 @@ namespace AutoMortarShellChoice
         public bool AutoFirefight = true;
         public int SmartShieldTactics = 1;
         public bool SmartTargeting = true;
+        public bool TargetLeading = false;
 
         public override void ExposeData()
         {
